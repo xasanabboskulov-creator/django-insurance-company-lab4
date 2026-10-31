@@ -1,0 +1,33 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Договор страхования</title>
+    <link rel="stylesheet" href="{% static 'css/article.css' %}">
+</head>
+<body class="article">
+
+    <div class="header">
+        <h1>Страховая компания</h1>
+        <p>Информация о договоре страхования</p>
+    </div>
+
+    <div class="article-content">
+        <h2>Договор № {{ post.id }}</h2>
+
+        <p><strong>Клиент:</strong> {{ post.client.full_name }}</p>
+        <p><strong>Страховой агент:</strong> {{ post.agent.full_name }}</p>
+        <p><strong>Филиал:</strong> {{ post.branch.name }}</p>
+        <p><strong>Вид страхования:</strong> {{ post.insurance_type.name }}</p>
+        <p><strong>Дата заключения:</strong> {{ post.date }}</p>
+        <p><strong>Страховая сумма:</strong> {{ post.insurance_sum }}</p>
+        <p><strong>Страховая выплата:</strong> {{ post.insurance_payment }}</p>
+        <p><strong>Заработная плата агента:</strong> {{ post.agent_salary }}</p>
+
+        <a href="{% url 'archive' %}">Все договоры</a>
+    </div>
+
+</body>
+</html>

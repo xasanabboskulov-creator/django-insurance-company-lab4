@@ -1,0 +1,39 @@
+
+{% load static %}
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Архив договоров страхования</title>
+    <link rel="stylesheet" href="{% static 'css/article.css' %}">
+</head>
+<body class="archive">
+
+    <div class="header">
+        <h1>Страховая компания</h1>
+        <p>Архив договоров страхования</p>
+    </div>
+
+    <div class="archive-content">
+        {% for contract in contracts %}
+            <div class="post">
+                <h2 class="post-title">
+                    <a href="{% url 'get_contract' contract.id %}">
+                        Договор страхования № {{ contract.id }}
+                    </a>
+                </h2>
+
+                <p><strong>Клиент:</strong> {{ contract.client.full_name }}</p>
+                <p><strong>Агент:</strong> {{ contract.agent.full_name }}</p>
+                <p><strong>Вид страхования:</strong> {{ contract.insurance_type.name }}</p>
+                <p><strong>Дата:</strong> {{ contract.date }}</p>
+                <p><strong>Страховая сумма:</strong> {{ contract.insurance_sum }}</p>
+            </div>
+        {% empty %}
+            <p>Договоры страхования пока отсутствуют.</p>
+        {% endfor %}
+    </div>
+
+</body>
+</html>
